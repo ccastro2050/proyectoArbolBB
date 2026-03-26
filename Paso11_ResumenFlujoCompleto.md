@@ -5,9 +5,9 @@
 
 ---
 
-## 1. El arbol con los datos de prueba
+## 1. El árbol con los datos de prueba
 
-Al cargar los datos de prueba (extension 50, 30, 70, 20, 40, 60, 80, 10), el arbol queda asi:
+Al cargar los datos de prueba (extension 50, 30, 70, 20, 40, 60, 80, 10), el árbol queda asi:
 
 ```
               [50]
@@ -19,7 +19,7 @@ Al cargar los datos de prueba (extension 50, 30, 70, 20, 40, 60, 80, 10), el arb
     [10]
 ```
 
-### Niveles del arbol
+### Niveles del árbol
 
 ```
 Nivel 0:  [50]
@@ -43,37 +43,37 @@ Nivel 3:  [10]
 | Total de nodos | 8 |
 | Altura | 4 |
 | Hojas | 4 (son: 10, 40, 60, 80) |
-| Extension minima | 10 (Recepcion) |
-| Extension maxima | 80 (Soporte) |
+| Extensión mínima | 10 (Recepción) |
+| Extensión máxima | 80 (Soporte) |
 
 ---
 
 ## 2. Tabla de operaciones del proyecto
 
-| Operacion | Metodo | Clase | Quien lo hizo |
+| Operación | Método | Clase | Quien lo hizo |
 |-----------|--------|-------|---------------|
-| Insertar | `insertar()` / `insertarRecursivo()` | ArbolInventario | Codigo base (est1) |
-| Mostrar Inorden | `mostrarInorden()` | ArbolInventario | Codigo base (est1) |
-| Buscar | `buscar()` / `buscarRecursivo()` | ArbolInventario | Codigo base (est1) |
+| Insertar | `insertar()` / `insertarRecursivo()` | ArbolInventario | Código base (est1) |
+| Mostrar Inorden | `mostrarInorden()` | ArbolInventario | Código base (est1) |
+| Buscar | `buscar()` / `buscarRecursivo()` | ArbolInventario | Código base (est1) |
 | Mostrar Preorden | `mostrarPreorden()` | ArbolInventario | est1 - Paso 5 |
 | Mostrar Postorden | `mostrarPostorden()` | ArbolInventario | est1 - Paso 5 |
 | Eliminar | `eliminar()` / `eliminarRecursivo()` | ArbolInventario | est2 - Paso 6 |
-| Encontrar minimo (auxiliar) | `encontrarMinimo()` | ArbolInventario | est2 - Paso 6 |
+| Encontrar mínimo (auxiliar) | `encontrarMinimo()` | ArbolInventario | est2 - Paso 6 |
 | Contar nodos | `contarNodos()` | ArbolInventario | est3 - Paso 7 |
 | Calcular altura | `calcularAltura()` | ArbolInventario | est3 - Paso 7 |
 | Contar hojas | `contarHojas()` | ArbolInventario | est3 - Paso 7 |
-| Extension minima | `encontrarMinimoPublico()` | ArbolInventario | est1 - Paso 8 |
-| Extension maxima | `encontrarMaximo()` | ArbolInventario | est1 - Paso 8 |
+| Extensión mínima | `encontrarMinimoPublico()` | ArbolInventario | est1 - Paso 8 |
+| Extensión máxima | `encontrarMaximo()` | ArbolInventario | est1 - Paso 8 |
 | Buscar con detalle | `buscarConDetalle()` / `buscarNodo()` | ArbolInventario | est2 - Paso 9 |
 | Mostrar por nivel | `mostrarNivel()` | ArbolInventario | est2 - Paso 9 |
 | Cargar datos de prueba | `cargarDatosDePrueba()` | ArbolInventario | est3 - Paso 10 |
-| Verificar arbol vacio | `estaVacio()` | ArbolInventario | est3 - Paso 10 |
+| Verificar árbol vacio | `estaVacio()` | ArbolInventario | est3 - Paso 10 |
 
 ---
 
 ## 3. Flujo completo: del teclado al nodo
 
-Cuando el usuario registra una extension, esto es lo que pasa internamente:
+Cuando el usuario registra una extensión, esto es lo que pasa internamente:
 
 ```
 1. El usuario escribe "50" y "Gerencia" en la consola
@@ -86,7 +86,7 @@ Cuando el usuario registra una extension, esto es lo que pasa internamente:
          ↓
 5. Como raiz es null (arbol vacio), se crea un nuevo Producto(50, "Gerencia")
          ↓
-6. Ese nuevo Producto se asigna como raiz del arbol
+6. Ese nuevo Producto se asigna como raiz del árbol
          ↓
 7. Main.java imprime "Registrado con exito."
 ```
@@ -117,22 +117,27 @@ Este fue el flujo que se repitio en cada paso del tutorial:
 
 ```
          est2 o est3                              est1
-         (en su PC)                           (dueno del repo)
+         (en su PC)                           (dueño del repo)
               |                                      |
    1. git checkout main                              |
    2. git pull origin main                           |
    3. git checkout -b feature/nombre                 |
-   4. (escribe el codigo)                            |
+   4. (escribe el código)                            |
    5. javac src/*.java -d out                        |
    6. java -cp out Main                              |
    7. git add src/                                   |
    8. git commit -m "mensaje"                        |
    9. git push origin feature/nombre                 |
               |                                      |
-              └──── la rama aparece en GitHub ───────→|
+  10. Ve el botón amarillo en GitHub                  |
+      "Compare & pull request"                       |
+      Crea el Pull Request                           |
+              |                                      |
+              └──── le avisa a est1 ────────────────→|
                                                      |
-                                          10. Crea el Pull Request
-                                          11. Merge pull request
+                                          11. Va a la pestaña Pull requests
+                                          12. Abre el PR, revisa en Files changed
+                                          13. Merge pull request → Confirm merge
                                                      |
                                           Los cambios quedan en main
 ```
@@ -145,16 +150,16 @@ Este fue el flujo que se repitio en cada paso del tutorial:
 proyectoArbolBB/
 ├── src/
 │   ├── Producto.java          (El nodo: id, nombre, izquierdo, derecho)
-│   ├── ArbolInventario.java   (16 metodos para gestionar el arbol)
-│   └── Main.java              (Menu con 13 opciones + datos de prueba)
+│   ├── ArbolInventario.java   (16 métodos para gestionar el árbol)
+│   └── Main.java              (Menú con 13 opciones + datos de prueba)
 ├── out/                       (Archivos compilados - ignorado por Git)
 ├── .gitignore                 (Ignora out/ y .vscode/)
-└── README.md                  (Descripcion del proyecto)
+└── README.md                  (Descripción del proyecto)
 ```
 
 ---
 
-## 6. Menu final del programa
+## 6. Menú final del programa
 
 ```
 ========================================
@@ -169,8 +174,8 @@ proyectoArbolBB/
   7.  Contar Nodos
   8.  Altura del Arbol
   9.  Contar Hojas
-  10. Extension Minima
-  11. Extension Maxima
+  10. Extensión Minima
+  11. Extensión Maxima
   12. Buscar con Detalle
   13. Ver Nodos por Nivel
   0.  Salir
@@ -179,16 +184,16 @@ proyectoArbolBB/
 
 ---
 
-## 7. Distribucion del trabajo
+## 7. Distribución del trabajo
 
-| Paso | Estudiante | Que agrego |
+| Paso | Estudiante | Que agregó |
 |------|-----------|------------|
-| 3 | est1 | Creo el repositorio, subio el codigo base, agrego a est2 y est3 |
+| 3 | est1 | Creó el repositorio, subió el código base, agregó a est2 y est3 |
 | 5 | est1 | Recorridos preorden y postorden |
 | 6 | est2 | Eliminacion de nodos (3 casos) |
 | 7 | est3 | Conteo de nodos, altura, conteo de hojas |
-| 8 | est1 | Extension minima y maxima |
-| 9 | est2 | Busqueda con detalle y mostrar por nivel |
+| 8 | est1 | Extensión mínima y máxima |
+| 9 | est2 | Búsqueda con detalle y mostrar por nivel |
 | 10 | est3 | Datos de prueba, validaciones, manejo de errores |
 
 ---
@@ -197,13 +202,13 @@ proyectoArbolBB/
 
 | Tema | Donde se aplico |
 |------|----------------|
-| Arbol Binario de Busqueda | Todo el proyecto |
+| Árbol Binario de Búsqueda | Todo el proyecto |
 | Recursion | Insertar, buscar, recorridos, contar, altura, hojas, eliminar, nivel |
 | Recorrido Inorden | Mostrar datos ordenados (opcion 2) |
 | Recorrido Preorden | Mostrar raiz primero (opcion 4) |
 | Recorrido Postorden | Mostrar hojas primero (opcion 5) |
-| Eliminacion con 3 casos | Opcion 6 |
-| Busqueda eficiente | Opciones 3 y 12 |
+| Eliminacion con 3 casos | Opción 6 |
+| Búsqueda eficiente | Opciones 3 y 12 |
 | Git (ramas, commits, push) | Todos los pasos |
 | Pull Requests | Todos los pasos |
 | Trabajo en equipo | 3 estudiantes, cada uno con su rama |

@@ -23,7 +23,7 @@ mkdir proyectoArbolBB
 # Entrar a la carpeta
 cd proyectoArbolBB
 
-# Crear la carpeta para el codigo fuente
+# Crear la carpeta para el código fuente
 mkdir src
 
 # Crear la carpeta para los archivos compilados
@@ -48,16 +48,16 @@ Copiar este codigo:
 
 ```java
 /**
- * Clase Producto - Representa un NODO dentro del Arbol Binario de Busqueda.
+ * Clase Producto - Representa un NODO dentro del Árbol Binario de Busqueda.
  *
- * Cada nodo almacena la informacion de una extension telefonica:
- * - id: numero de extension, usado como clave para ordenar en el arbol.
- * - nombre: nombre de la oficina o servicio asociado a esa extension.
+ * Cada nodo almacena la información de una extensión telefónica:
+ * - id: número de extensión, usado como clave para ordenar en el árbol.
+ * - nombre: nombre de la oficina o servicio asociado a esa extensión.
  * - izquierdo/derecho: referencias a los nodos hijos, que permiten
- *   formar la estructura del arbol (menor a la izquierda, mayor a la derecha).
+ *   formar la estructura del árbol (menor a la izquierda, mayor a la derecha).
  */
 public class Producto {
-    int id;              // Extension telefonica (Dato para ordenar)
+    int id;              // Extensión telefónica (Dato para ordenar)
     String nombre;       // Nombre de la oficina o servicio
     Producto izquierdo;  // Referencia al hijo menor (rama izquierda)
     Producto derecho;    // Referencia al hijo mayor (rama derecha)
@@ -80,15 +80,15 @@ Copiar este codigo:
 
 ```java
 /**
- * Clase ArbolInventario - Contiene toda la logica del Arbol Binario de Busqueda (ABB).
+ * Clase ArbolInventario - Contiene toda la lógica del Árbol Binario de Búsqueda (ABB).
  *
- * Gestiona la estructura del arbol a traves de tres operaciones principales:
- * 1. Insertar: agrega un nuevo nodo en la posicion correcta del arbol.
- * 2. Mostrar Inorden: recorre el arbol izquierda-raiz-derecha (ordenado).
- * 3. Buscar: recorre el arbol hasta encontrar el ID o llegar a null.
+ * Gestiona la estructura del árbol a traves de tres operaciones principales:
+ * 1. Insertar: agrega un nuevo nodo en la posición correcta del árbol.
+ * 2. Mostrar Inorden: recorre el árbol izquierda-raiz-derecha (ordenado).
+ * 3. Buscar: recorre el árbol hasta encontrar el ID o llegar a null.
  */
 public class ArbolInventario {
-    Producto raiz; // Nodo principal del arbol
+    Producto raiz; // Nodo principal del árbol
 
     public ArbolInventario() {
         this.raiz = null;
@@ -122,13 +122,13 @@ public class ArbolInventario {
         }
     }
 
-    // METODO 3: BUSCAR (Retorna un mensaje segun la existencia del ID)
+    // METODO 3: BUSCAR (Retorna un mensaje según la existencia del ID)
     public String buscar(int id) {
         return buscarRecursivo(raiz, id) ? "ID encontrado en el sistema." : "El ID no existe.";
     }
 
     private boolean buscarRecursivo(Producto actual, int id) {
-        if (actual == null) return false; // No se encontro
+        if (actual == null) return false; // No se encontró
         if (id == actual.id) return true; // Encontrado
 
         // Decidir hacia que rama bajar
@@ -153,9 +153,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        ArbolInventario miArbol = new ArbolInventario();
+        ArbolInventario miÁrbol = new ArbolInventario();
         Scanner sc = new Scanner(System.in);
-        int opcion = -1;
+        int opción = -1;
 
         while (opcion != 0) {
             System.out.println("\n--- DIRECTORIO DE EXTENSIONES ---");
@@ -164,11 +164,11 @@ public class Main {
             System.out.println("3. Buscar Extension");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
-            opcion = sc.nextInt();
+            opción = sc.nextInt();
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese numero de extension: ");
+                    System.out.print("Ingrese número de extension: ");
                     int id = sc.nextInt();
                     sc.nextLine(); // Limpiar el buffer
                     System.out.print("Nombre de la oficina: ");
@@ -189,7 +189,7 @@ public class Main {
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
-                    System.out.println("Opcion no valida.");
+                    System.out.println("Opción no valida.");
             }
         }
         sc.close();
@@ -229,7 +229,7 @@ javac src/*.java -d out
 java -cp out Main
 ```
 
-Debe aparecer el menu. Probar registrando una extension y luego viendola con la opcion 2.
+Debe aparecer el menú. Probar registrando una extensión y luego viendola con la opción 2.
 
 ---
 
@@ -239,7 +239,7 @@ Debe aparecer el menu. Probar registrando una extension y luego viendola con la 
 
 1. Ir a https://github.com/new
 2. Nombre del repositorio: `proyectoArbolBB`
-3. Descripcion: `Sistema de Directorio con Arboles Binarios de Busqueda`
+3. Descripción: `Sistema de Directorio con Arboles Binarios de Busqueda`
 4. Seleccionar **Public**
 5. **NO** marcar "Add a README file"
 6. Hacer clic en **Create repository**
@@ -251,92 +251,76 @@ Ejecutar estos comandos uno por uno en la carpeta del proyecto:
 ```powershell
 git init
 ```
-> **Que es:** Inicializa un repositorio Git en la carpeta actual.
-> **Para que:** Crea una carpeta oculta `.git` donde Git guardara todo el historial de cambios.
-> **Por que:** Sin esto, Git no sabe que esta carpeta es un proyecto que debe rastrear.
+> Inicializa un repositorio Git en la carpeta actual. Crea una carpeta oculta `.git` donde Git guardara todo el historial de cambios. Sin este comando, Git no sabe que está carpeta es un proyecto que debe rastrear.
 
 ```powershell
 git add .
 ```
-> **Que es:** Agrega TODOS los archivos de la carpeta al area de preparacion.
-> **Para que:** Le dice a Git cuales archivos incluir en el proximo guardado (commit).
-> **Por que:** Git no guarda archivos automaticamente. Hay que decirle cuales incluir.
+> Agrega todos los archivos de la carpeta al área de preparación (staging). Git no guarda archivos automáticamente, hay que decirle cuales incluir en el próximo guardado.
 
 ```powershell
-git commit -m "Codigo base: Sistema de Directorio con ABB"
+git commit -m "Código base: Sistema de Directorio con ABB"
 ```
-> **Que es:** Crea un punto de guardado (commit) con un mensaje descriptivo.
-> **Para que:** Guarda una "fotografia" del estado actual de todos los archivos.
-> **Por que:** Cada commit es un punto al que podemos volver si algo sale mal.
+> Crea un punto de guardado (commit) con un mensaje descriptivo. Es como una "fotografía" del estado actual de todos los archivos. Si algo sale mal después, podemos volver a este punto.
 
 ```powershell
 git branch -M main
 ```
-> **Que es:** Renombra la rama actual a `main`.
-> **Para que:** Usar el nombre estandar que GitHub espera para la rama principal.
-> **Por que:** Algunas versiones de Git crean la rama con otro nombre por defecto.
+> Renombra la rama actual a `main`, que es el nombre estándar que GitHub espera para la rama principal. Algunas versiones de Git crean la rama con otro nombre por defecto, así que este comando asegura que se llame `main`.
 
 ```powershell
 git remote add origin https://github.com/TU_USUARIO/proyectoArbolBB.git
 ```
-> **Que es:** Conecta tu proyecto local con el repositorio que creaste en GitHub.
-> **Para que:** Le dice a Git a donde debe subir los archivos cuando hagas `push`.
-> **Por que:** Sin esta conexion, Git no sabe que existe un repositorio en internet.
+> Conecta tu proyecto local con el repositorio que creaste en GitHub. Sin está conexión, Git no sabe a donde subir los archivos cuando hagas `push`. Reemplazar `TU_USUARIO` con tu nombre de usuario real de GitHub.
 
 ```powershell
 git push -u origin main
 ```
-> **Que es:** Sube todos los archivos al repositorio en GitHub.
-> **Para que:** Que el codigo este disponible en internet para que est2 y est3 lo descarguen.
-> **Por que:** Los archivos solo existen en tu computadora hasta que haces push.
-
-> **Nota:** Reemplazar `TU_USUARIO` con tu nombre de usuario real de GitHub.
+> Sube todos los archivos al repositorio en GitHub. Los archivos solo existen en tu computadora hasta que haces push. Después de esto, est2 y est3 podrán descargarse el proyecto.
 
 ### 5.3 Si algo sale mal (no te preocupes)
 
-**Es normal equivocarse con Git.** Si algo falla, aqui estan las soluciones:
+**Es normal equivocarse con Git.** Si algo falla, aquí están las soluciones:
 
 **Error: "fatal: not a git repository"**
-> Significa que no estas en la carpeta correcta. Solucion:
+> Significa que no estás en la carpeta correcta. Solución:
 > ```powershell
 > cd C:\Users\TU_USUARIO\Desktop\proyectoArbolBB
 > ```
 
 **Error: "remote origin already exists"**
-> Significa que ya conectaste el repositorio antes. No pasa nada. Solucion:
+> Significa que ya conectaste el repositorio antes. No pasa nada. Solución:
 > ```powershell
 > git remote remove origin
 > git remote add origin https://github.com/TU_USUARIO/proyectoArbolBB.git
 > ```
 
 **Error: "failed to push" o "rejected"**
-> Puede pasar si el repositorio en GitHub se creo con README. La solucion mas sencilla es borrar el repositorio en GitHub (Settings → Danger Zone → Delete this repository), volver a crearlo **sin** README, y repetir desde `git remote add origin`.
+> Puede pasar si el repositorio en GitHub se creó con README. La solución más sencilla es borrar el repositorio en GitHub (Settings → Danger Zone → Delete this repository), volver a crearlo **sin** README, y repetir desde `git remote add origin`.
 
 **Error al compilar (javac muestra errores)**
-> Revisar que los 3 archivos `.java` esten dentro de la carpeta `src/` y que el codigo este copiado correctamente. Corregir el error, y luego:
+> Revisar que los 3 archivos `.java` esten dentro de la carpeta `src/` y que el código este copiado correctamente. Corregir el error, y luego:
 > ```powershell
 > git add .
-> git commit -m "Corregir error en codigo base"
+> git commit -m "Corregir error en código base"
 > git push origin main
 > ```
 
-**Si todo se complico demasiado y no sabes que paso:**
-> La opcion mas segura es empezar de cero. No tiene nada de malo:
+**Si todo se complicó demasiado y no sabes que paso:**
+> La opción más segura es empezar de cero. No tiene nada de malo:
 > 1. Borrar el repositorio en GitHub (Settings → Danger Zone → Delete this repository)
 > 2. Borrar la carpeta del proyecto en tu computadora
 > 3. Volver a empezar desde el inicio de este Paso 3
 >
-> Git es una herramienta que se aprende con practica. Equivocarse es parte del proceso.
+> Git es una herramienta que se aprende con práctica. Equivocarse es parte del proceso.
 
-### 5.3 Proteger la rama main
+### 5.3 Nota sobre protección de la rama main
 
-Esto obliga a que todos los cambios entren por Pull Request con revision de un companero.
-
-1. En GitHub, ir al repositorio → **Settings** → **Branches**
-2. Hacer clic en **Add branch protection rule**
-3. En "Branch name pattern" escribir: `main`
-4. Marcar: **Require a pull request before merging**
-5. Hacer clic en **Create**
+> **Importante:** En proyectos profesionales se configura una "protección de rama" para que nadie pueda subir código directamente a `main` y todo pase por Pull Request.
+>
+> En este tutorial **no vamos a activar esa protección** para mantener las cosas simples y evitar bloqueos innecesarios. Igual vamos a trabajar con ramas y Pull Requests porque es la buena práctica, pero si alguien se equivoca y sube algo directo a `main`, no pasará nada grave.
+>
+> Cuando ya dominen el flujo de ramas y Pull Requests, pueden investigar como activarlo en **Settings → Branches → Add branch protection rule** en GitHub.
 
 ### 5.4 Agregar a est2 y est3 como colaboradores
 
@@ -355,23 +339,17 @@ Una vez aceptada la invitacion, cada uno abre PowerShell:
 ```powershell
 cd C:\Users\TU_USUARIO\Desktop
 ```
-> **Que es:** Cambia la ubicacion de PowerShell al escritorio.
-> **Para que:** Que el proyecto se descargue en el escritorio (o donde quieras tenerlo).
-> **Por que:** Necesitamos estar en la carpeta donde queremos guardar el proyecto antes de clonarlo.
+> Cambia la ubicación de PowerShell al escritorio. Necesitamos estar en la carpeta donde queremos guardar el proyecto antes de clonarlo.
 
 ```powershell
 git clone https://github.com/USUARIO_EST1/proyectoArbolBB.git
 ```
-> **Que es:** Descarga una copia completa del repositorio de GitHub a tu computadora.
-> **Para que:** Tener el proyecto con todo el codigo y el historial de Git en tu maquina.
-> **Por que:** Es la forma de obtener un proyecto que alguien mas creo en GitHub.
+> Descarga una copia completa del repositorio de GitHub a tu computadora, incluyendo todo el código y el historial de Git. Es la forma de obtener un proyecto que alguien más creó en GitHub.
 
 ```powershell
 cd proyectoArbolBB
 ```
-> **Que es:** Entra a la carpeta del proyecto que acabamos de descargar.
-> **Para que:** Todos los comandos siguientes deben ejecutarse dentro de la carpeta del proyecto.
-> **Por que:** Git solo funciona cuando estas dentro de una carpeta que tiene un repositorio.
+> Entra a la carpeta del proyecto que acabamos de descargar. Todos los comandos de Git deben ejecutarse dentro de está carpeta, si no, Git no sabe en que repositorio estás trabajando.
 
 ### Verificar que funciona
 
@@ -380,16 +358,14 @@ javac src/*.java -d out
 java -cp out Main
 ```
 
-Debe aparecer el menu funcionando.
+Debe aparecer el menú funcionando.
 
 ### Verificar la rama
 
 ```powershell
 git branch
 ```
-> **Que es:** Muestra en que rama estas trabajando actualmente.
-> **Para que:** Confirmar que estas en `main`.
-> **Por que:** Siempre debemos saber en que rama estamos antes de empezar a trabajar.
+> Muestra en que rama estás trabajando actualmente. Debe salir `main` con un asterisco. Siempre hay que saber en que rama estamos antes de empezar a trabajar.
 
 Debe mostrar:
 
@@ -400,17 +376,17 @@ Debe mostrar:
 ### Si algo sale mal al clonar (no te preocupes)
 
 **Error: "repository not found"**
-> Significa que la URL esta mal o no aceptaste la invitacion. Solucion:
+> Significa que la URL está mal o no aceptaste la invitacion. Solución:
 > 1. Verificar que aceptaste la invitacion en GitHub (revisar correo o notificaciones)
 > 2. Verificar que la URL sea exactamente la que te dio est1
 
 **Error: "destination path already exists"**
-> Significa que ya hay una carpeta llamada `proyectoArbolBB` en tu escritorio. Solucion:
+> Significa que ya hay una carpeta llamada `proyectoArbolBB` en tu escritorio. Solución:
 > 1. Borrar la carpeta existente
 > 2. Volver a ejecutar `git clone`
 
 **El programa no compila (javac muestra errores)**
-> Puede ser que la carpeta `out` no exista. Solucion:
+> Puede ser que la carpeta `out` no exista. Solución:
 > ```powershell
 > mkdir out
 > javac src/*.java -d out
@@ -423,34 +399,34 @@ Debe mostrar:
 
 ## 7. Estructura del proyecto
 
-Despues de completar este paso, los 3 estudiantes tienen esta estructura:
+Después de completar este paso, los 3 estudiantes tienen está estructura:
 
 ```
 proyectoArbolBB/
 ├── src/
-│   ├── Producto.java          (El nodo del arbol)
-│   ├── ArbolInventario.java   (La logica del arbol)
-│   └── Main.java              (El menu de consola)
+│   ├── Producto.java          (El nodo del árbol)
+│   ├── ArbolInventario.java   (La lógica del árbol)
+│   └── Main.java              (El menú de consola)
 ├── out/                       (Archivos compilados - ignorado por Git)
 ├── .gitignore                 (Archivos que Git debe ignorar)
-└── README.md                  (Descripcion del proyecto)
+└── README.md                  (Descripción del proyecto)
 ```
 
 ---
 
 ## 8. Flujo de trabajo que usaremos en los pasos 5 al 10
 
-Cada vez que un estudiante necesite agregar codigo nuevo, seguira estos pasos:
+Cada vez que un estudiante necesite agregar código nuevo, seguira estos pasos:
 
 ```powershell
-# 1. Ir a la rama principal y traer los ultimos cambios
+# 1. Ir a la rama principal y traer los últimos cambios
 git checkout main
 git pull origin main
 
 # 2. Crear una rama nueva para su trabajo
 git checkout -b feature/nombre-de-la-funcionalidad
 
-# 3. (Escribir el codigo siguiendo el paso del tutorial)
+# 3. (Escribir el código siguiendo el paso del tutorial)
 
 # 4. Compilar y probar
 javac src/*.java -d out
@@ -463,5 +439,6 @@ git commit -m "Mensaje descriptivo del cambio"
 # 6. Subir la rama a GitHub
 git push origin feature/nombre-de-la-funcionalidad
 
-# 7. est1 va a GitHub → crea el Pull Request → Merge
+# 7. Quien hizo push crea el Pull Request en GitHub
+# 8. est1 va a la pestaña Pull requests → revisa → Merge
 ```

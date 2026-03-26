@@ -16,34 +16,28 @@ Abrir PowerShell en la carpeta del proyecto:
 ```powershell
 git checkout main
 ```
-> **Que es:** Cambia a la rama `main`.
-> **Para que:** Nos aseguramos de estar en la rama principal antes de crear una nueva.
-> **Por que:** Si creamos la rama desde otra rama vieja, no tendriamos los cambios de est1 y est2.
+> Cambia a la rama `main`. Siempre debemos partir de `main` antes de crear una rama nueva, para no quedarnos sin los cambios de est1 y est2.
 
 ```powershell
 git pull origin main
 ```
-> **Que es:** Descarga los ultimos cambios desde GitHub (origin) a tu computadora.
-> **Para que:** Traer el codigo que est1 (recorridos) y est2 (eliminar) ya agregaron.
-> **Por que:** Si no hacemos pull, nuestro codigo local no tendra los metodos nuevos y habra conflictos al hacer merge.
+> Descarga los últimos cambios desde GitHub. Esto trae el código que est1 (recorridos) y est2 (eliminar) ya agregaron. Si no hacemos pull, nuestro código local no tendrá los métodos nuevos y habrá conflictos.
 
 ```powershell
 git checkout -b feature/estadisticas
 ```
-> **Que es:** Crea una rama nueva llamada `feature/estadisticas` y se cambia a ella.
-> **Para que:** Trabajar en un espacio aislado sin afectar `main`.
-> **Por que:** La rama `main` esta protegida, no se puede subir codigo directamente. Todo debe ir por Pull Request.
+> Crea una rama nueva llamada `feature/estadisticas` y se cambia a ella. Trabajar en ramas separadas es la buena práctica: cada quien hace sus cambios sin afectar el código de los demás en `main`.
 
 ---
 
 ## 2. Que vamos a agregar
 
-Tres metodos que nos dan informacion sobre la estructura del arbol:
+Tres métodos que nos dan información sobre la estructura del árbol:
 
-| Metodo | Que hace | Ejemplo con el arbol de 7 nodos |
+| Método | Que hace | Ejemplo con el árbol de 7 nodos |
 |--------|----------|--------------------------------|
-| `contarNodos()` | Cuenta cuantos nodos tiene el arbol en total | 7 |
-| `calcularAltura()` | Calcula cuantos niveles tiene el arbol | 3 |
+| `contarNodos()` | Cuenta cuantos nodos tiene el árbol en total | 7 |
+| `calcularAltura()` | Calcula cuantos niveles tiene el árbol | 3 |
 | `contarHojas()` | Cuenta los nodos que no tienen hijos | 4 |
 
 ### Ejemplo visual
@@ -62,22 +56,22 @@ Hojas: 4 (son 20, 40, 60, 80 porque no tienen hijos)
 
 ---
 
-## 3. Entender la logica antes de escribir el codigo
+## 3. Entender la lógica antes de escribir el código
 
-### 3.1 Contar nodos (recursion)
+### 3.1 Contar nodos (recursión)
 
 ```
-Para contar los nodos del arbol:
+Para contar los nodos del árbol:
 - Si el nodo es null → devuelvo 0 (no hay nada que contar)
 - Si el nodo existe → cuento 1 (este nodo) + los de la izquierda + los de la derecha
 ```
 
-### 3.2 Calcular altura (recursion)
+### 3.2 Calcular altura (recursión)
 
 ```
 Para calcular la altura:
 - Si el nodo es null → devuelvo 0 (no hay niveles)
-- Si el nodo existe → devuelvo 1 + el maximo entre la altura izquierda y la altura derecha
+- Si el nodo existe → devuelvo 1 + el máximo entre la altura izquierda y la altura derecha
 ```
 
 Ejemplo con [50]:
@@ -87,7 +81,7 @@ Altura derecha de [50] = altura de [70] = 2
 Altura de [50] = 1 + max(2, 2) = 3
 ```
 
-### 3.3 Contar hojas (recursion)
+### 3.3 Contar hojas (recursión)
 
 ```
 Para contar las hojas:
@@ -102,7 +96,7 @@ Para contar las hojas:
 
 Abrir `src/ArbolInventario.java` en VS Code.
 
-Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave de cierre `}` de la clase):
+Agregar estos métodos **después** del último método existente (antes de la llave de cierre `}` de la clase):
 
 ```java
     // =============================================
@@ -110,7 +104,7 @@ Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave
     // =============================================
 
     // METODO NUEVO: CONTAR NODOS
-    // Cuenta cuantos nodos tiene el arbol en total
+    // Cuenta cuantos nodos tiene el árbol en total
     public int contarNodos(Producto nodo) {
         if (nodo == null) {
             return 0; // Caso base: no hay nodo, no cuento nada
@@ -120,12 +114,12 @@ Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave
     }
 
     // METODO NUEVO: CALCULAR ALTURA
-    // Calcula cuantos niveles tiene el arbol
+    // Calcula cuantos niveles tiene el árbol
     public int calcularAltura(Producto nodo) {
         if (nodo == null) {
             return 0; // Caso base: no hay nodo, altura es 0
         }
-        // La altura es 1 + el maximo entre la altura izquierda y la derecha
+        // La altura es 1 + el máximo entre la altura izquierda y la derecha
         int alturaIzquierda = calcularAltura(nodo.izquierdo);
         int alturaDerecha = calcularAltura(nodo.derecho);
         return 1 + Math.max(alturaIzquierda, alturaDerecha);
@@ -154,9 +148,9 @@ Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave
 
 ## 5. Modificar Main.java
 
-### 5.1 Agregar las opciones 7, 8 y 9 en el texto del menu
+### 5.1 Agregar las opciones 7, 8 y 9 en el texto del menú
 
-Buscar estas lineas:
+Buscar estás líneas:
 
 ```java
             System.out.println("6. Eliminar Extension");
@@ -182,7 +176,7 @@ Buscar `case 0:` y agregar **antes** de el:
                     System.out.println("Total de nodos: " + miArbol.contarNodos(miArbol.raiz));
                     break;
                 case 8:
-                    System.out.println("Altura del arbol: " + miArbol.calcularAltura(miArbol.raiz));
+                    System.out.println("Altura del árbol: " + miArbol.calcularAltura(miArbol.raiz));
                     break;
                 case 9:
                     System.out.println("Total de hojas: " + miArbol.contarHojas(miArbol.raiz));
@@ -196,31 +190,27 @@ Buscar `case 0:` y agregar **antes** de el:
 ```powershell
 javac src/*.java -d out
 ```
-> **Que es:** Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`.
-> **Para que:** Convertir el codigo fuente en bytecode que Java pueda ejecutar.
-> **Por que:** Si hay errores de sintaxis, el compilador los mostrara aqui antes de ejecutar.
+> Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`. Si hay errores de sintaxis, el compilador los mostrara aquí antes de ejecutar.
 
 ```powershell
 java -cp out Main
 ```
-> **Que es:** Ejecuta la clase `Main` buscando los `.class` en la carpeta `out`.
-> **Para que:** Probar que el programa funciona correctamente con los cambios nuevos.
-> **Por que:** Siempre debemos verificar que el codigo funciona antes de subirlo a GitHub.
+> Ejecuta el programa. Siempre debemos verificar que el código funciona antes de subirlo a GitHub.
 
 ### Prueba paso a paso
 
-1. Registrar estas extensiones: **50, 30, 70, 20, 40, 60, 80**
+1. Registrar estás extensiones: **50, 30, 70, 20, 40, 60, 80**
 
-2. **Probar opcion 7 (Contar Nodos):**
+2. **Probar opción 7 (Contar Nodos):**
    - Debe mostrar: `Total de nodos: 7`
 
-3. **Probar opcion 8 (Altura):**
-   - Debe mostrar: `Altura del arbol: 3`
+3. **Probar opción 8 (Altura):**
+   - Debe mostrar: `Altura del árbol: 3`
 
-4. **Probar opcion 9 (Contar Hojas):**
+4. **Probar opción 9 (Contar Hojas):**
    - Debe mostrar: `Total de hojas: 4`
 
-5. **Probar despues de eliminar:** Eliminar la extension 20 (opcion 6), luego:
+5. **Probar después de eliminar:** Eliminar la extensión 20 (opcion 6), luego:
    - Contar nodos: debe ser 6
    - Contar hojas: debe ser 3 (ahora 40, 60 y 80)
 
@@ -231,38 +221,43 @@ java -cp out Main
 ```powershell
 git add src/ArbolInventario.java src/Main.java
 ```
-> **Que es:** Agrega los archivos modificados al area de preparacion (staging).
-> **Para que:** Le dice a Git cuales archivos se incluiran en el proximo commit.
-> **Por que:** Solo subimos los archivos `.java` que modificamos. Los `.class` compilados no se suben porque estan en el `.gitignore`.
+> Agrega los archivos modificados al área de preparación. Solo subimos los `.java` que modificamos, los `.class` compilados se ignoran automáticamente por el `.gitignore`.
 
 ```powershell
 git commit -m "Agregar conteo de nodos, altura y conteo de hojas"
 ```
-> **Que es:** Crea un punto de guardado (commit) con un mensaje descriptivo.
-> **Para que:** Registrar los cambios en el historial de Git con una descripcion clara.
-> **Por que:** El mensaje ayuda a los companeros a entender que cambios contiene este commit sin tener que leer todo el codigo.
+> Crea un punto de guardado (commit) con un mensaje descriptivo. El mensaje ayuda a los compañeros a entender que cambios contiene este commit sin tener que leer todo el código.
 
 ```powershell
 git push origin feature/estadisticas
 ```
-> **Que es:** Sube la rama `feature/estadisticas` al repositorio remoto en GitHub.
-> **Para que:** Que los companeros puedan ver el codigo y crear el Pull Request.
-> **Por que:** Los cambios solo existen en tu computadora hasta que haces push. Sin push, nadie mas puede verlos.
+> Sube la rama `feature/estadisticas` a GitHub. Después de esto, est3 puede crear el Pull Request y est1 puede revisar y hacer merge.
 
 ### Crear el Pull Request en GitHub
 
-est3 sube su rama. Luego **est1** va a GitHub, crea el Pull Request y hace merge:
+> **Recordar:** El botón amarillo solo le aparece a quien hizo el push. est3 crea el PR, est1 revisa y hace merge.
 
-1. est1 va al repositorio en GitHub
-2. Aparecera un boton amarillo que dice **"Compare & pull request"**. Hacer clic
-3. Titulo: `Agregar conteo de nodos, altura y conteo de hojas`
-4. Descripcion:
+**est3 (quien hizo push) crea el PR:**
+
+1. Ir al repositorio en GitHub
+2. GitHub muestra un banner amarillo: **"feature/estadisticas had recent pushes"** → Hacer clic en **Compare & pull request**
+3. Si no aparece el banner: ir a la pestaña **Pull requests** → **New pull request** → en "compare" seleccionar `feature/estadisticas`
+4. Título: `Agregar conteo de nodos, altura y conteo de hojas`
+5. Descripción:
    ```
-   Se agregan tres metodos en ArbolInventario:
-   - contarNodos(): cuenta el total de nodos del arbol
-   - calcularAltura(): calcula cuantos niveles tiene el arbol
+   Se agregan tres métodos en ArbolInventario:
+   - contarNodos(): cuenta el total de nodos del árbol
+   - calcularAltura(): calcula cuantos niveles tiene el árbol
    - contarHojas(): cuenta los nodos sin hijos
-   Se agregan las opciones 7, 8 y 9 en el menu.
+   Se agregan las opciones 7, 8 y 9 en el menú.
    ```
-5. Hacer clic en **Create pull request**
-6. Hacer clic en **Merge pull request** → **Confirm merge**
+6. Hacer clic en **Create pull request**
+7. **Avisarle a est1** que el PR está listo
+
+**est1 (dueño del repositorio) revisa y hace merge:**
+
+1. Ir a la pestaña **Pull requests** en GitHub
+2. Abrir el PR que est3 acaba de crear
+3. Revisar los cambios en la pestaña **Files changed**
+4. Hacer clic en **Merge pull request** → **Confirm merge**
+5. Hacer clic en **Delete branch** para limpiar la rama remota

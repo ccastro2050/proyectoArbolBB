@@ -16,23 +16,17 @@ Abrir PowerShell en la carpeta del proyecto:
 ```powershell
 git checkout main
 ```
-> **Que es:** Cambia a la rama `main`.
-> **Para que:** Nos aseguramos de estar en la rama principal antes de crear una nueva.
-> **Por que:** Siempre debemos partir de `main` para tener la version mas reciente del proyecto.
+> Cambia a la rama `main`. Siempre debemos partir de `main` antes de crear una rama nueva, para asegurarnos de tener la versión más reciente del proyecto.
 
 ```powershell
 git pull origin main
 ```
-> **Que es:** Descarga los ultimos cambios desde GitHub (origin) a tu computadora.
-> **Para que:** Traer cualquier cambio que se haya hecho en `main` desde la ultima vez.
-> **Por que:** Si no hacemos pull, podriamos estar trabajando con codigo desactualizado.
+> Descarga los últimos cambios desde GitHub a tu computadora. Si no hacemos pull, podríamos estar trabajando con código desactualizado que ya fue modificado por otro compañero.
 
 ```powershell
 git checkout -b feature/recorridos
 ```
-> **Que es:** Crea una rama nueva llamada `feature/recorridos` y se cambia a ella.
-> **Para que:** Trabajar en un espacio aislado sin afectar `main`.
-> **Por que:** La rama `main` esta protegida, no se puede subir codigo directamente. Todo debe ir por Pull Request.
+> Crea una rama nueva llamada `feature/recorridos` y se cambia a ella. Trabajar en ramas separadas es la buena práctica: cada quien hace sus cambios sin afectar el código de los demás en `main`.
 
 ---
 
@@ -42,7 +36,7 @@ El proyecto base solo tiene el recorrido **Inorden** (Izquierda-Raiz-Derecha). A
 
 | Recorrido | Orden de visita | Ya existe? |
 |-----------|----------------|------------|
-| Inorden | Izquierda → Raiz → Derecha | Si (codigo base) |
+| Inorden | Izquierda → Raiz → Derecha | Si (código base) |
 | **Preorden** | **Raiz → Izquierda → Derecha** | **No (lo agregaremos)** |
 | **Postorden** | **Izquierda → Derecha → Raiz** | **No (lo agregaremos)** |
 
@@ -52,7 +46,7 @@ El proyecto base solo tiene el recorrido **Inorden** (Izquierda-Raiz-Derecha). A
 
 Abrir el archivo `src/ArbolInventario.java` en VS Code.
 
-Agregar estos dos metodos **despues** del metodo `mostrarInorden` y **antes** del metodo `buscar`:
+Agregar estos dos métodos **después** del método `mostrarInorden` y **antes** del método `buscar`:
 
 ```java
     // METODO NUEVO: MOSTRAR PREORDEN (Raiz - Izquierda - Derecha)
@@ -76,7 +70,7 @@ Agregar estos dos metodos **despues** del metodo `mostrarInorden` y **antes** de
 
 ### Donde queda exactamente
 
-El archivo `ArbolInventario.java` debe quedar asi (las partes nuevas estan marcadas):
+El archivo `ArbolInventario.java` debe quedar así (las partes nuevas están marcadas):
 
 ```java
 public class ArbolInventario {
@@ -157,11 +151,11 @@ public class ArbolInventario {
 
 ## 4. Modificar Main.java
 
-Abrir `src/Main.java` y agregar dos opciones nuevas al menu.
+Abrir `src/Main.java` y agregar dos opciones nuevas al menú.
 
-### 4.1 Agregar las opciones 4 y 5 en el texto del menu
+### 4.1 Agregar las opciones 4 y 5 en el texto del menú
 
-Buscar estas lineas:
+Buscar estás líneas:
 
 ```java
             System.out.println("3. Buscar Extension");
@@ -179,7 +173,7 @@ Cambiarlas por:
 
 ### 4.2 Agregar los case 4 y 5 en el switch
 
-Buscar esta parte del switch:
+Buscar está parte del switch:
 
 ```java
                 case 0:
@@ -207,25 +201,21 @@ Agregar **antes** de `case 0` estos dos casos nuevos:
 ```powershell
 javac src/*.java -d out
 ```
-> **Que es:** Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`.
-> **Para que:** Convertir el codigo fuente en bytecode que Java pueda ejecutar.
-> **Por que:** Si hay errores de sintaxis, el compilador los mostrara aqui antes de ejecutar.
+> Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`. Si hay errores de sintaxis, el compilador los mostrara aquí antes de ejecutar.
 
 ```powershell
 java -cp out Main
 ```
-> **Que es:** Ejecuta la clase `Main` buscando los `.class` en la carpeta `out`.
-> **Para que:** Probar que el programa funciona correctamente con los cambios nuevos.
-> **Por que:** Siempre debemos verificar que el codigo funciona antes de subirlo a GitHub.
+> Ejecuta el programa. Siempre debemos verificar que el código funciona antes de subirlo a GitHub.
 
 ### Prueba paso a paso
 
-1. Registrar estas extensiones en este orden: **50, 30, 70, 20, 40, 60, 80**
-2. Usar opcion **2 (Inorden)** → debe mostrar: 20, 30, 40, 50, 60, 70, 80
-3. Usar opcion **4 (Preorden)** → debe mostrar: 50, 30, 20, 40, 70, 60, 80
-4. Usar opcion **5 (Postorden)** → debe mostrar: 20, 40, 30, 60, 80, 70, 50
+1. Registrar estás extensiones en este orden: **50, 30, 70, 20, 40, 60, 80**
+2. Usar opción **2 (Inorden)** → debe mostrar: 20, 30, 40, 50, 60, 70, 80
+3. Usar opción **4 (Preorden)** → debe mostrar: 50, 30, 20, 40, 70, 60, 80
+4. Usar opción **5 (Postorden)** → debe mostrar: 20, 40, 30, 60, 80, 70, 50
 
-Si los resultados coinciden, el codigo esta correcto.
+Si los resultados coinciden, el código está correcto.
 
 ---
 
@@ -236,47 +226,41 @@ Si los resultados coinciden, el codigo esta correcto.
 ```powershell
 git add src/ArbolInventario.java src/Main.java
 ```
-> **Que es:** Agrega los archivos modificados al area de preparacion (staging).
-> **Para que:** Le dice a Git cuales archivos se incluiran en el proximo commit.
-> **Por que:** Solo subimos los archivos `.java` que modificamos. No subimos los `.class` ni la carpeta `out` porque estan en el `.gitignore`.
+> Agrega los archivos modificados al área de preparación. Solo subimos los `.java` que modificamos, los `.class` y la carpeta `out` se ignoran automáticamente por el `.gitignore`.
 
 ```powershell
 git commit -m "Agregar recorridos preorden y postorden"
 ```
-> **Que es:** Crea un punto de guardado (commit) con un mensaje descriptivo.
-> **Para que:** Registrar los cambios en el historial de Git con una descripcion clara.
-> **Por que:** El mensaje ayuda a los companeros a entender que cambios contiene este commit.
+> Crea un punto de guardado (commit) con un mensaje descriptivo. El mensaje ayuda a los compañeros a entender que cambios contiene este commit sin tener que leer todo el código.
 
 ### 6.2 Subir la rama
 
 ```powershell
 git push origin feature/recorridos
 ```
-> **Que es:** Sube la rama `feature/recorridos` al repositorio remoto en GitHub.
-> **Para que:** Que los companeros puedan ver el codigo y crear el Pull Request.
-> **Por que:** Los cambios solo existen en tu computadora hasta que haces push. Sin push, nadie mas puede verlos.
+> Sube la rama `feature/recorridos` a GitHub. Los cambios solo existen en tu computadora hasta que haces push. Después de esto, se puede crear el Pull Request en GitHub.
 
 ### 6.3 Si algo sale mal con Git (no te preocupes)
 
 Esta es la primera vez que trabajas con ramas. Es normal que algo falle. Aqui las soluciones:
 
 **Error: "nothing to commit, working tree clean"**
-> Significa que no hay cambios para guardar. Puede pasar si olvidaste guardar los archivos en VS Code (`Ctrl + S`). Solucion:
+> Significa que no hay cambios para guardar. Puede pasar si olvidaste guardar los archivos en VS Code (`Ctrl + S`). Solución:
 > 1. Ir a VS Code y guardar todos los archivos (`Ctrl + S` en cada uno)
 > 2. Volver a ejecutar `git add src/ArbolInventario.java src/Main.java`
 > 3. Volver a ejecutar el `git commit`
 
 **Error: "fatal: The current branch feature/recorridos has no upstream branch"**
-> Significa que la rama no existe todavia en GitHub. Solucion:
+> Significa que la rama no existe todavía en GitHub. Solución:
 > ```powershell
 > git push -u origin feature/recorridos
 > ```
 > Esto la crea en GitHub y la sube al mismo tiempo.
 
 **Error al compilar (javac muestra errores)**
-> Revisar que el codigo este bien copiado. Los errores mas comunes son:
+> Revisar que el código este bien copiado. Los errores más comunes son:
 > - Falta una llave `}` o un punto y coma `;`
-> - El metodo se pego en el lugar equivocado (debe estar dentro de la clase)
+> - El método se pego en el lugar equivocado (debe estar dentro de la clase)
 >
 > Corregir el error, guardar, y luego:
 > ```powershell
@@ -295,15 +279,55 @@ Esta es la primera vez que trabajas con ramas. Es normal que algo falle. Aqui la
 > ```
 > Esto borra la rama con tus cambios y te deja en `main` limpio. Luego vuelves a empezar desde el paso 1 de este archivo (crear la rama).
 >
-> **Tranquilo:** borrar una rama local no afecta a nadie mas. Solo estas borrando tu trabajo local que no funciono. El repositorio en GitHub sigue intacto.
+> **Tranquilo:** borrar una rama local no afecta a nadie más. Solo estás borrando tu trabajo local que no funcionó. El repositorio en GitHub sigue intacto.
 
 ### 6.4 Crear el Pull Request en GitHub
 
-est1 crea el Pull Request y hace merge:
+> **Que es un Pull Request (PR)?** Es una solicitud para integrar los cambios de una rama a `main`. En vez de meter código directo a `main`, el PR permite:
+> - Ver exactamente que archivos cambiaron (línea por línea)
+> - Que el dueño del repositorio (est1) revise el código antes de integrarlo
+> - Tener un historial de que se integró, cuando y quien lo hizo
+>
+> **Quien crea el PR?** Lo crea quien hizo el push, porque GitHub le muestra un botón amarillo solo a esa persona. Si est1 hizo push, est1 crea el PR. Si est2 o est3 hicieron push, ellos crean el PR.
+>
+> **Quien hace merge?** Solo est1, porque es el dueño del repositorio y de la rama `main`.
+>
+> **¿Qué pasa si est1 no acepta el PR?** El código se queda en la rama pero no entra a `main`. El PR queda abierto en GitHub esperando. Est1 puede escribir un comentario explicando qué hay que corregir, y el estudiante que hizo el push puede hacer más commits en la misma rama para arreglar el problema. Cuando est1 esté conforme, hace merge.
+>
+> **¿Qué pasa si el estudiante no crea el PR después de hacer push?** La rama queda subida en GitHub pero nadie la revisa. El código no entra a `main` y los demás compañeros no pueden usar esos cambios. Sin PR, es como si el trabajo no existiera para el equipo.
+
+Como este paso lo hizo est1, est1 crea el PR y hace merge.
+
+**Paso a paso en GitHub:**
 
 1. Ir al repositorio en GitHub
-2. Aparecera un boton amarillo que dice **"Compare & pull request"**. Hacer clic
-3. Titulo: `Agregar recorridos preorden y postorden`
-4. Descripcion: `Se agregan los metodos mostrarPreorden y mostrarPostorden en ArbolInventario y las opciones 4 y 5 en el menu`
-5. Hacer clic en **Create pull request**
-6. Hacer clic en **Merge pull request** → **Confirm merge**
+
+2. GitHub muestra un banner amarillo que dice algo como: **"feature/recorridos had recent pushes"** con un botón **Compare & pull request**.
+
+> Ese banner aparece porque GitHub detectó que alguien acaba de subir una rama nueva. "Recent pushes" significa "subidas recientes". El botón **Compare & pull request** significa: "comparar los cambios de esa rama contra `main` y crear una solicitud para integrarlos". Hacer clic en ese botón.
+
+3. Si no aparece el banner (puede pasar si paso mucho tiempo desde el push): ir a la pestaña **Pull requests** (arriba en el repositorio) → **New pull request** → en el dropdown "compare" seleccionar `feature/recorridos`. Esto hace lo mismo que el botón amarillo pero de forma manual.
+
+4. GitHub muestra un formulario para describir el PR. Llenar:
+   - Título: `Agregar recorridos preorden y postorden`
+   - Descripción: `Se agregan los métodos mostrarPreorden y mostrarPostorden en ArbolInventario y las opciones 4 y 5 en el menú`
+
+5. Hacer clic en **Create pull request**.
+
+> Esto NO integra los cambios todavía. Solo crea la solicitud. GitHub ahora muestra una página con el PR abierto donde se puede ver exactamente que archivos cambiaron y que líneas se agregaron o modificaron. En un equipo real, aquí es donde un compañero revisaría el código antes de aprobarlo.
+
+6. Revisar los cambios en la pestaña **Files changed**. Ahi se ven las líneas nuevas en verde y las eliminadas en rojo. Verificar que todo se ve bien.
+
+7. Hacer clic en **Merge pull request**.
+
+> **Que es merge?** Merge significa "fusionar". Al hacer clic, le estamos diciendo a GitHub: "toma todos los cambios de la rama `feature/recorridos` e integralos a `main`". Después de esto, `main` tendrá el código nuevo.
+
+8. Hacer clic en **Confirm merge** para confirmar.
+
+> Listo. Los cambios de la rama `feature/recorridos` ahora están en `main`. La rama ya cumplió su propósito.
+
+9. GitHub muestra un botón **Delete branch**. Hacer clic.
+
+> Esto solo borra la rama en GitHub, no borra el código (el código ya está seguro en `main`). Es para no acumular ramas viejas que ya se integraron. Si no se borra, no pasa nada malo, solo queda una rama huérfana que ya no se usa y ensucia la lista de ramas.
+
+10. **¿Y si después quiero ver qué hizo cada estudiante?** Aunque la rama se borró, el Pull Request queda guardado para siempre en GitHub. Ir a la pestaña **Pull requests** → **Closed** y ahí aparecen todos los PRs anteriores con el nombre de quien lo creó, la fecha, y todos los archivos que se cambiaron línea por línea. Esa es la forma de ver el historial de contribuciones de cada estudiante.

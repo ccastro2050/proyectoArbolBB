@@ -1,4 +1,4 @@
-# Paso 8: Extension Minima y Maxima (est1)
+# Paso 8: Extensión Minima y Maxima (est1)
 
 **Asignatura:** Estructuras de Datos
 **Profesor:** Carlos Arturo Castro Castro
@@ -16,40 +16,34 @@ Abrir PowerShell en la carpeta del proyecto:
 ```powershell
 git checkout main
 ```
-> **Que es:** Cambia a la rama `main`.
-> **Para que:** Nos aseguramos de estar en la rama principal antes de crear una nueva.
-> **Por que:** Siempre debemos partir de `main` para tener la version mas reciente del proyecto con todos los cambios de los companeros.
+> Cambia a la rama `main`. Siempre debemos partir de `main` antes de crear una rama nueva, para tener la versión más reciente con todos los cambios de los compañeros.
 
 ```powershell
 git pull origin main
 ```
-> **Que es:** Descarga los ultimos cambios desde GitHub (origin) a tu computadora.
-> **Para que:** Traer el codigo que est2 (eliminar) y est3 (estadisticas) ya agregaron.
-> **Por que:** Si no hacemos pull, no tendriamos los metodos nuevos y habra conflictos al hacer merge.
+> Descarga los últimos cambios desde GitHub. Esto trae el código que est2 (eliminar) y est3 (estadisticas) ya agregaron. Si no hacemos pull, no tendríamos los métodos nuevos y habrá conflictos.
 
 ```powershell
 git checkout -b feature/min-max
 ```
-> **Que es:** Crea una rama nueva llamada `feature/min-max` y se cambia a ella.
-> **Para que:** Trabajar en un espacio aislado sin afectar `main`.
-> **Por que:** La rama `main` esta protegida, no se puede subir codigo directamente. Todo debe ir por Pull Request.
+> Crea una rama nueva llamada `feature/min-max` y se cambia a ella. Trabajar en ramas separadas es la buena práctica: cada quien hace sus cambios sin afectar el código de los demás en `main`.
 
 ---
 
 ## 2. Que vamos a agregar
 
-Dos metodos que encuentran la extension mas pequena y la mas grande del arbol:
+Dos métodos que encuentran la extensión más pequeña y la más grande del árbol:
 
-| Metodo | Que hace | Como funciona |
+| Método | Que hace | Como funciona |
 |--------|----------|---------------|
-| `encontrarMinimoPublico()` | Encuentra la extension mas pequena | Baja siempre por la izquierda hasta no poder mas |
-| `encontrarMaximo()` | Encuentra la extension mas grande | Baja siempre por la derecha hasta no poder mas |
+| `encontrarMinimoPublico()` | Encuentra la extensión más pequeña | Baja siempre por la izquierda hasta no poder más |
+| `encontrarMaximo()` | Encuentra la extensión más grande | Baja siempre por la derecha hasta no poder más |
 
 ### Por que funciona asi
 
-En un ABB, los valores menores siempre estan a la **izquierda**. Entonces el nodo mas pequeno de todo el arbol es el que esta **mas a la izquierda de todo**.
+En un ABB, los valores menores siempre están a la **izquierda**. Entonces el nodo más pequeño de todo el árbol es el que está **mas a la izquierda de todo**.
 
-Lo mismo al reves: el nodo mas grande esta **mas a la derecha de todo**.
+Lo mismo al reves: el nodo más grande está **mas a la derecha de todo**.
 
 ```
         [50]
@@ -68,7 +62,7 @@ Maximo: bajar siempre por la derecha → 50 → 70 → 80 (no tiene derecho, es 
 
 Abrir `src/ArbolInventario.java` en VS Code.
 
-Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave de cierre `}` de la clase):
+Agregar estos métodos **después** del último método existente (antes de la llave de cierre `}` de la clase):
 
 ```java
     // =============================================
@@ -76,31 +70,31 @@ Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave
     // =============================================
 
     // METODO NUEVO: ENCONTRAR MINIMO (publico)
-    // Encuentra la extension mas pequena del arbol
+    // Encuentra la extensión más pequeña del árbol
     public String encontrarMinimoPublico() {
         if (raiz == null) {
-            return "El arbol esta vacio.";
+            return "El árbol está vacio.";
         }
         Producto nodo = raiz;
         // Bajar siempre por la izquierda hasta llegar al final
         while (nodo.izquierdo != null) {
             nodo = nodo.izquierdo;
         }
-        return "Extension minima: " + nodo.id + " | Oficina: " + nodo.nombre;
+        return "Extensión minima: " + nodo.id + " | Oficina: " + nodo.nombre;
     }
 
     // METODO NUEVO: ENCONTRAR MAXIMO
-    // Encuentra la extension mas grande del arbol
+    // Encuentra la extensión más grande del árbol
     public String encontrarMaximo() {
         if (raiz == null) {
-            return "El arbol esta vacio.";
+            return "El árbol está vacio.";
         }
         Producto nodo = raiz;
         // Bajar siempre por la derecha hasta llegar al final
         while (nodo.derecho != null) {
             nodo = nodo.derecho;
         }
-        return "Extension maxima: " + nodo.id + " | Oficina: " + nodo.nombre;
+        return "Extensión maxima: " + nodo.id + " | Oficina: " + nodo.nombre;
     }
 
     // =============================================
@@ -108,17 +102,17 @@ Agregar estos metodos **despues** del ultimo metodo existente (antes de la llave
     // =============================================
 ```
 
-### Por que usamos `while` y no recursion?
+### Por que usamos `while` y no recursión?
 
-En los recorridos usamos recursion porque visitamos **todos** los nodos. Pero aqui solo necesitamos bajar por **un solo camino** (siempre izquierda o siempre derecha), asi que un `while` es mas sencillo y eficiente.
+En los recorridos usamos recursión porque visitamos **todos** los nodos. Pero aquí solo necesitamos bajar por **un solo camino** (siempre izquierda o siempre derecha), así que un `while` es más sencillo y eficiente.
 
 ---
 
 ## 4. Modificar Main.java
 
-### 4.1 Agregar las opciones 10 y 11 en el texto del menu
+### 4.1 Agregar las opciones 10 y 11 en el texto del menú
 
-Buscar estas lineas:
+Buscar estás líneas:
 
 ```java
             System.out.println("9. Contar Hojas");
@@ -129,8 +123,8 @@ Cambiarlas por:
 
 ```java
             System.out.println("9. Contar Hojas");
-            System.out.println("10. Extension Minima");
-            System.out.println("11. Extension Maxima");
+            System.out.println("10. Extensión Minima");
+            System.out.println("11. Extensión Maxima");
             System.out.println("0. Salir");
 ```
 
@@ -154,29 +148,25 @@ Buscar `case 0:` y agregar **antes** de el:
 ```powershell
 javac src/*.java -d out
 ```
-> **Que es:** Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`.
-> **Para que:** Convertir el codigo fuente en bytecode que Java pueda ejecutar.
-> **Por que:** Si hay errores de sintaxis, el compilador los mostrara aqui antes de ejecutar.
+> Compila todos los archivos `.java` de la carpeta `src` y genera los `.class` en `out`. Si hay errores de sintaxis, el compilador los mostrara aquí antes de ejecutar.
 
 ```powershell
 java -cp out Main
 ```
-> **Que es:** Ejecuta la clase `Main` buscando los `.class` en la carpeta `out`.
-> **Para que:** Probar que el programa funciona correctamente con los cambios nuevos.
-> **Por que:** Siempre debemos verificar que el codigo funciona antes de subirlo a GitHub.
+> Ejecuta el programa. Siempre debemos verificar que el código funciona antes de subirlo a GitHub.
 
 ### Prueba paso a paso
 
-1. Registrar estas extensiones: **50, 30, 70, 20, 40, 60, 80**
+1. Registrar estás extensiones: **50, 30, 70, 20, 40, 60, 80**
 
-2. **Probar opcion 10 (Extension Minima):**
-   - Debe mostrar: `Extension minima: 20 | Oficina: Archivo`
+2. **Probar opción 10 (Extensión Minima):**
+   - Debe mostrar: `Extensión minima: 20 | Oficina: Archivo`
 
-3. **Probar opcion 11 (Extension Maxima):**
-   - Debe mostrar: `Extension maxima: 80 | Oficina: Soporte`
+3. **Probar opción 11 (Extensión Maxima):**
+   - Debe mostrar: `Extensión maxima: 80 | Oficina: Soporte`
 
-4. **Probar con arbol vacio:** Salir del programa, volver a ejecutar (sin registrar nada), y probar opciones 10 y 11:
-   - Ambas deben decir: `El arbol esta vacio.`
+4. **Probar con árbol vacio:** Salir del programa, volver a ejecutar (sin registrar nada), y probar opciones 10 y 11:
+   - Ambas deben decir: `El árbol está vacio.`
 
 ---
 
@@ -185,38 +175,35 @@ java -cp out Main
 ```powershell
 git add src/ArbolInventario.java src/Main.java
 ```
-> **Que es:** Agrega los archivos modificados al area de preparacion (staging).
-> **Para que:** Le dice a Git cuales archivos se incluiran en el proximo commit.
-> **Por que:** Solo subimos los archivos `.java` que modificamos. Los `.class` compilados no se suben porque estan en el `.gitignore`.
+> Agrega los archivos modificados al área de preparación. Solo subimos los `.java` que modificamos, los `.class` compilados se ignoran automáticamente por el `.gitignore`.
 
 ```powershell
-git commit -m "Agregar busqueda de extension minima y maxima"
+git commit -m "Agregar búsqueda de extensión mínima y maxima"
 ```
-> **Que es:** Crea un punto de guardado (commit) con un mensaje descriptivo.
-> **Para que:** Registrar los cambios en el historial de Git con una descripcion clara.
-> **Por que:** El mensaje ayuda a los companeros a entender que cambios contiene este commit sin tener que leer todo el codigo.
+> Crea un punto de guardado (commit) con un mensaje descriptivo. El mensaje ayuda a los compañeros a entender que cambios contiene este commit sin tener que leer todo el código.
 
 ```powershell
 git push origin feature/min-max
 ```
-> **Que es:** Sube la rama `feature/min-max` al repositorio remoto en GitHub.
-> **Para que:** Que los companeros puedan ver el codigo y crear el Pull Request.
-> **Por que:** Los cambios solo existen en tu computadora hasta que haces push. Sin push, nadie mas puede verlos.
+> Sube la rama `feature/min-max` a GitHub. Después de esto, se puede crear el Pull Request.
+> **Por que:** Los cambios solo existen en tu computadora hasta que haces push. Sin push, nadie más puede verlos.
 
 ### Crear el Pull Request en GitHub
 
+Como este paso lo hizo est1, est1 crea el PR y hace merge:
+
 1. Ir al repositorio en GitHub
-2. Aparecera un boton amarillo que dice **"Compare & pull request"**. Hacer clic
-3. Titulo: `Agregar busqueda de extension minima y maxima`
-4. Descripcion:
+2. GitHub muestra un banner amarillo: **"feature/min-max had recent pushes"** → Hacer clic en **Compare & pull request**
+3. Si no aparece el banner: ir a la pestaña **Pull requests** → **New pull request** → en "compare" seleccionar `feature/min-max`
+4. Título: `Agregar búsqueda de extensión mínima y maxima`
+5. Descripción:
    ```
-   Se agregan dos metodos en ArbolInventario:
-   - encontrarMinimoPublico(): encuentra la extension mas pequena bajando por la izquierda
-   - encontrarMaximo(): encuentra la extension mas grande bajando por la derecha
-   Se agregan las opciones 10 y 11 en el menu.
+   Se agregan dos métodos en ArbolInventario:
+   - encontrarMinimoPublico(): encuentra la extensión más pequeña bajando por la izquierda
+   - encontrarMaximo(): encuentra la extensión más grande bajando por la derecha
+   Se agregan las opciones 10 y 11 en el menú.
    ```
-5. Hacer clic en **Create pull request**
-
-est1 crea el Pull Request y hace merge:
-
-6. Hacer clic en **Merge pull request** → **Confirm merge**
+6. Hacer clic en **Create pull request**
+7. Revisar los cambios en la pestaña **Files changed**
+8. Hacer clic en **Merge pull request** → **Confirm merge**
+9. Hacer clic en **Delete branch** para limpiar la rama remota
