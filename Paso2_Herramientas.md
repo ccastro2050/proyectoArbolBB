@@ -7,14 +7,14 @@
 
 ## 1. JDK Temurin (Eclipse Adoptium)
 
-El JDK es el kit de desarrollo de Java. Temurin es una version gratuita y de codigo abierto.
+El JDK es el kit de desarrollo de Java. Temurin es una versión gratuita y de código abierto.
 
 ### Instalacion
 
 1. Ir a https://adoptium.net/
-2. Descargar el instalador para **Windows x64** (version LTS mas reciente)
+2. Descargar el instalador para **Windows x64** (version LTS más reciente)
 3. Ejecutar el instalador
-4. **Importante:** Marcar la opcion **"Add to PATH"** y **"Set JAVA_HOME"** durante la instalacion
+4. **Importante:** Marcar la opción **"Add to PATH"** y **"Set JAVA_HOME"** durante la instalacion
 
 ### Verificar en PowerShell
 
@@ -27,7 +27,7 @@ java -version
 Debe mostrar algo como:
 
 ```
-openjdk version "21.0.x" 2024-xx-xx LTS
+openjdk versión "21.0.x" 2024-xx-xx LTS
 Eclipse Adoptium
 ```
 
@@ -47,10 +47,10 @@ javac -version
 2. Descargar e instalar para Windows
 3. Abrir VS Code
 
-### Extension necesaria
+### Extensión necesaria
 
-1. Ir a la pestana de **Extensiones** (icono de cuadrados en la barra lateral izquierda, o `Ctrl+Shift+X`)
-2. Buscar **"Extension Pack for Java"** de Microsoft
+1. Ir a la pestaña de **Extensiones** (icono de cuadrados en la barra lateral izquierda, o `Ctrl+Shift+X`)
+2. Buscar **"Extensión Pack for Java"** de Microsoft
 3. Hacer clic en **Install**
 
 Esto instala todo lo necesario para trabajar con Java en VS Code: resaltado de sintaxis, autocompletado, depuracion y ejecucion.
@@ -122,4 +122,4 @@ java -cp out Main
 | `-d out` | Coloca los `.class` en la carpeta `out` |
 | `java` | **Ejecuta**: corre el programa compilado |
 | `-cp out` | Le dice a Java que busque las clases en la carpeta `out` |
-| `Main` | Nombre de la clase que tiene el metodo `main` |
+| `Main` | Nombre de la clase que tiene el método `main` |

@@ -1,21 +1,21 @@
-# Paso 4: Entender el Codigo Base
+# Paso 4: Entender el Código Base
 
 **Asignatura:** Estructuras de Datos
 **Profesor:** Carlos Arturo Castro Castro
 
 ---
 
-> **Este paso es para los 3 estudiantes.** Antes de agregar codigo nuevo, deben entender exactamente que hace cada linea del proyecto.
+> **Este paso es para los 3 estudiantes.** Antes de agregar código nuevo, deben entender exactamente que hace cada línea del proyecto.
 
 ---
 
 ## 1. Producto.java (El Nodo)
 
-Esta clase representa **un nodo** del arbol. Cada nodo guarda un dato y tiene dos referencias a sus hijos.
+Esta clase representa **un nodo** del árbol. Cada nodo guarda un dato y tiene dos referencias a sus hijos.
 
 ```java
 public class Producto {
-    int id;              // Extension telefonica (clave para ordenar)
+    int id;              // Extensión telefónica (clave para ordenar)
     String nombre;       // Nombre de la oficina
     Producto izquierdo;  // Referencia al hijo izquierdo (menor)
     Producto derecho;    // Referencia al hijo derecho (mayor)
@@ -29,15 +29,15 @@ public class Producto {
 }
 ```
 
-### Que significa cada linea
+### Que significa cada línea
 
 | Linea | Que hace |
 |-------|----------|
-| `int id` | Guarda el numero de extension. Este valor decide si el nodo va a la izquierda o derecha |
-| `String nombre` | Guarda el nombre de la oficina asociada a esa extension |
+| `int id` | Guarda el número de extensión. Este valor decide si el nodo va a la izquierda o derecha |
+| `String nombre` | Guarda el nombre de la oficina asociada a esa extensión |
 | `Producto izquierdo` | Apunta al hijo izquierdo. Es de tipo `Producto` porque un hijo es otro nodo |
 | `Producto derecho` | Apunta al hijo derecho |
-| `this.izquierdo = null` | Cuando se crea un nodo nuevo, no tiene hijos todavia |
+| `this.izquierdo = null` | Cuando se crea un nodo nuevo, no tiene hijos todavía |
 
 ### Representacion visual de un nodo
 
@@ -62,13 +62,13 @@ public class ArbolInventario {
     Producto raiz;
 
     public ArbolInventario() {
-        this.raiz = null;  // El arbol empieza vacio
+        this.raiz = null;  // El árbol empieza vacio
     }
 ```
 
-`raiz` es el punto de entrada al arbol. Todos los recorridos y operaciones empiezan desde aqui.
+`raiz` es el punto de entrada al árbol. Todos los recorridos y operaciones empiezan desdeaquí.
 
-### 2.2 Metodo insertar
+### 2.2 Método insertar
 
 ```java
     public void insertar(int id, String nombre) {
@@ -88,7 +88,7 @@ public class ArbolInventario {
     }
 ```
 
-**Ejemplo paso a paso: insertar 30 en un arbol con raiz 50:**
+**Ejemplo paso a paso: insertar 30 en un árbol con raiz 50:**
 
 ```
 1. insertar(30, "Contabilidad") llama a insertarRecursivo(raiz, 30, ...)
@@ -102,7 +102,7 @@ public class ArbolInventario {
      [30]
 ```
 
-### 2.3 Metodo mostrarInorden
+### 2.3 Método mostrarInorden
 
 ```java
     public void mostrarInorden(Producto nodo) {
@@ -114,9 +114,9 @@ public class ArbolInventario {
     }
 ```
 
-Recorre el arbol en orden **Izquierda → Raiz → Derecha**. Produce un listado ordenado de menor a mayor.
+Recorre el árbol en orden **Izquierda → Raiz → Derecha**. Produce un listado ordenado de menor a mayor.
 
-### 2.4 Metodo buscar
+### 2.4 Método buscar
 
 ```java
     public String buscar(int id) {
@@ -132,7 +132,7 @@ Recorre el arbol en orden **Izquierda → Raiz → Derecha**. Produce un listado
     }
 ```
 
-**Ejemplo: buscar 40 en el arbol:**
+**Ejemplo: buscar 40 en el árbol:**
 
 ```
         [50]
@@ -155,12 +155,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArbolInventario miArbol = new ArbolInventario();
+        ArbolInventario miÁrbol = new ArbolInventario();
         Scanner sc = new Scanner(System.in);
-        int opcion = -1;
+        int opción = -1;
 
         while (opcion != 0) {
-            // ... muestra el menu y lee la opcion ...
+            // ... muestra el menú y lee la opción ...
             switch (opcion) {
                 case 1: // Registrar: lee id y nombre, llama miArbol.insertar()
                 case 2: // Ver directorio: llama miArbol.mostrarInorden(miArbol.raiz)
@@ -178,10 +178,10 @@ public class Main {
 | Linea | Que hace |
 |-------|----------|
 | `Scanner sc = new Scanner(System.in)` | Crea un objeto para leer lo que el usuario escribe |
-| `while (opcion != 0)` | El menu se repite hasta que el usuario escriba 0 |
-| `sc.nextInt()` | Lee un numero entero del teclado |
-| `sc.nextLine()` | Lee una linea de texto. Se usa despues de `nextInt()` para limpiar el buffer |
-| `switch (opcion)` | Ejecuta un bloque diferente segun la opcion elegida |
+| `while (opcion != 0)` | El menú se repite hasta que el usuario escriba 0 |
+| `sc.nextInt()` | Lee un número entero del teclado |
+| `sc.nextLine()` | Lee una línea de texto. Se usa después de `nextInt()` para limpiar el buffer |
+| `switch (opcion)` | Ejecuta un bloque diferente según la opción elegida |
 
 ---
 
@@ -198,7 +198,7 @@ java -cp out Main
 
 ### 4.2 Registrar estos datos (en este orden)
 
-| Orden | Extension | Oficina |
+| Orden | Extensión | Oficina |
 |-------|-----------|---------|
 | 1 | 50 | Gerencia |
 | 2 | 30 | Contabilidad |
@@ -210,12 +210,12 @@ java -cp out Main
 
 ### 4.3 Verificar
 
-1. Opcion **2 (Ver Directorio)**: deben aparecer ordenados: 20, 30, 40, 50, 60, 70, 80
-2. Opcion **3 (Buscar)**: buscar 40 → "ID encontrado". Buscar 99 → "El ID no existe"
+1. Opción **2 (Ver Directorio)**: deben aparecer ordenados: 20, 30, 40, 50, 60, 70, 80
+2. Opción **3 (Buscar)**: buscar 40 → "ID encontrado". Buscar 99 → "El ID no existe"
 
-### 4.4 Dibujar el arbol en papel
+### 4.4 Dibujar el árbol en papel
 
-Dibujar el arbol que se forma al insertar esos 7 datos en ese orden:
+Dibujar el árbol que se forma al insertar esos 7 datos en ese orden:
 
 ```
         [50]
@@ -226,6 +226,6 @@ Dibujar el arbol que se forma al insertar esos 7 datos en ese orden:
 ```
 
 **Preguntas:**
-1. Si insertamos la extension 35, donde queda? (Respuesta: hijo izquierdo de 40)
-2. Si insertamos la extension 65, donde queda? (Respuesta: hijo derecho de 60)
-3. Cuantas hojas tiene el arbol? (Respuesta: 4 → son 20, 40, 60, 80)
+1. Si insertamos la extensión 35, donde queda? (Respuesta: hijo izquierdo de 40)
+2. Si insertamos la extensión 65, donde queda? (Respuesta: hijo derecho de 60)
+3. Cuantas hojas tiene el árbol? (Respuesta: 4 → son 20, 40, 60, 80)

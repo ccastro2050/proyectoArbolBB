@@ -5,9 +5,9 @@
 
 ---
 
-## 1. Que es un Arbol Binario
+## 1. Que es un Árbol Binario
 
-Un arbol binario es una estructura de datos donde cada nodo tiene **como maximo dos hijos**: uno izquierdo y uno derecho.
+Un árbol binario es una estructura de datos donde cada nodo tiene **como máximo dos hijos**: uno izquierdo y uno derecho.
 
 ```
         [50]           <-- Raiz
@@ -21,26 +21,26 @@ Un arbol binario es una estructura de datos donde cada nodo tiene **como maximo 
 
 | Termino | Significado |
 |---------|-------------|
-| **Raiz** | El primer nodo del arbol (no tiene padre) |
-| **Nodo** | Cada elemento del arbol que almacena un dato |
+| **Raiz** | El primer nodo del árbol (no tiene padre) |
+| **Nodo** | Cada elemento del árbol que almacena un dato |
 | **Hoja** | Un nodo que no tiene hijos (izquierdo ni derecho) |
 | **Hijo** | Nodo que cuelga de otro nodo |
 | **Padre** | Nodo del que cuelga otro nodo |
-| **Nivel** | Distancia desde la raiz (la raiz esta en nivel 0) |
-| **Altura** | Cantidad de niveles del arbol |
+| **Nivel** | Distancia desde la raiz (la raiz está en nivel 0) |
+| **Altura** | Cantidad de niveles del árbol |
 | **Subarbol** | Cualquier nodo junto con todos sus descendientes |
 
 ---
 
-## 2. Que es un Arbol Binario de Busqueda (ABB)
+## 2. Que es un Árbol Binario de Búsqueda (ABB)
 
-Es un arbol binario con una **regla de orden**:
+Es un árbol binario con una **regla de orden**:
 
 > **Valores menores van a la izquierda. Valores mayores van a la derecha.**
 
-Esto permite buscar datos rapidamente, similar a buscar una palabra en un diccionario: no revisas todas las paginas, sino que vas descartando mitades.
+Esto permite buscar datos rápidamente, similar a buscar una palabra en un diccionario: no revisas todas las páginas, sino que vas descartando mitades.
 
-### Ejemplo: insertar los numeros 50, 30, 70, 20, 40, 60, 80
+### Ejemplo: insertar los números 50, 30, 70, 20, 40, 60, 80
 
 ```
 Paso 1: Insertar 50 (es la raiz)
@@ -87,11 +87,11 @@ Paso 7: Insertar 80 (80 > 50, derecha; 80 > 70, derecha)
 
 ---
 
-## 3. Recorridos de un Arbol Binario
+## 3. Recorridos de un Árbol Binario
 
-Recorrer un arbol significa **visitar todos sus nodos** en un orden especifico. Existen tres recorridos principales. La diferencia entre ellos es **cuando se visita la raiz** respecto a sus hijos.
+Recorrer un árbol significa **visitar todos sus nodos** en un orden especifico. Existen tres recorridos principales. La diferencia entre ellos es **cuando se visita la raiz** respecto a sus hijos.
 
-Usaremos este arbol para todos los ejemplos:
+Usaremos este árbol para todos los ejemplos:
 
 ```
         [50]
@@ -107,7 +107,7 @@ Usaremos este arbol para todos los ejemplos:
 
 **Regla:** Primero visito todo lo de la izquierda, luego la raiz, luego todo lo de la derecha.
 
-**Resultado:** Los datos aparecen **ordenados de menor a mayor**. Por eso es el recorrido mas util en un ABB.
+**Resultado:** Los datos aparecen **ordenados de menor a mayor**. Por eso es el recorrido más util en un ABB.
 
 #### Paso a paso detallado:
 
@@ -156,7 +156,7 @@ public void mostrarInorden(Producto nodo) {
 
 **Regla:** Primero visito la raiz, luego todo lo de la izquierda, luego todo lo de la derecha.
 
-**Utilidad:** Sirve para **copiar o reconstruir** un arbol exactamente igual, porque el primer nodo que visita es la raiz.
+**Utilidad:** Sirve para **copiar o reconstruir** un árbol exactamente igual, porque el primer nodo que visita es la raiz.
 
 #### Paso a paso detallado:
 
@@ -205,7 +205,7 @@ public void mostrarPreorden(Producto nodo) {
 
 **Regla:** Primero visito todo lo de la izquierda, luego todo lo de la derecha, y al final la raiz.
 
-**Utilidad:** Sirve para **eliminar o liberar** un arbol completo, porque visita los hijos antes que el padre (asi no se pierden referencias).
+**Utilidad:** Sirve para **eliminar o liberar** un árbol completo, porque visita los hijos antes que el padre (asi no se pierden referencias).
 
 #### Paso a paso detallado:
 
@@ -264,8 +264,8 @@ Arbol:
 | Recorrido | Orden de visita | Resultado | Para que sirve |
 |-----------|----------------|-----------|----------------|
 | **Inorden** | Izq → Raiz → Der | 20, 30, 40, **50**, 60, 70, 80 | Ver datos ordenados |
-| **Preorden** | Raiz → Izq → Der | **50**, 30, 20, 40, 70, 60, 80 | Copiar/reconstruir el arbol |
-| **Postorden** | Izq → Der → Raiz | 20, 40, 30, 60, 80, 70, **50** | Eliminar/liberar el arbol |
+| **Preorden** | Raiz → Izq → Der | **50**, 30, 20, 40, 70, 60, 80 | Copiar/reconstruir el árbol |
+| **Postorden** | Izq → Der → Raiz | 20, 40, 30, 60, 80, 70, **50** | Eliminar/liberar el árbol |
 
 > **Truco para recordar:** El nombre del recorrido indica **cuando se visita la raiz**:
 > - **Pre**orden = raiz al **pre**inicio
@@ -276,15 +276,15 @@ Arbol:
 
 ## 4. Recursion: por que los arboles la necesitan
 
-La recursion es cuando un metodo **se llama a si mismo** para resolver un problema mas pequeno.
+La recursión es cuando un método **se llama a si mismo** para resolver un problema más pequeno.
 
-Los arboles son **naturalmente recursivos**: cada nodo es la raiz de su propio subarbol. Por eso, para recorrer un arbol, le decimos al metodo:
+Los arboles son **naturalmente recursivos**: cada nodo es la raiz de su propio subarbol. Por eso, para recorrer un árbol, le decimos al metodo:
 
 1. Si el nodo es `null`, no hagas nada (caso base)
-2. Si el nodo existe, procesalo y luego llama al mismo metodo para el hijo izquierdo y el derecho
+2. Si el nodo existe, procesalo y luego llama al mismo método para el hijo izquierdo y el derecho
 
 ```java
-// Ejemplo: contar todos los nodos del arbol
+// Ejemplo: contar todos los nodos del árbol
 public int contarNodos(Producto nodo) {
     if (nodo == null) {
         return 0;  // Caso base: no hay nodo, no cuento nada
@@ -300,11 +300,11 @@ public int contarNodos(Producto nodo) {
 
 Dado el siguiente orden de insercion: **45, 25, 65, 15, 35, 55, 75, 10, 30**
 
-1. Dibuje el arbol resultante paso a paso
+1. Dibuje el árbol resultante paso a paso
 2. Escriba el resultado de cada recorrido:
    - Inorden: _______________
    - Preorden: _______________
    - Postorden: _______________
-3. Cual es la altura del arbol?
+3. Cual es la altura del árbol?
 4. Cuantas hojas tiene?
-5. Si busco el numero 35, por cuales nodos paso?
+5. Si busco el número 35, por cuales nodos paso?
