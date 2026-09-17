@@ -1,61 +1,95 @@
 import java.util.Scanner;
 
-/**
- * Clase Main - Punto de entrada del programa e interfaz de usuario por consola.
- *
- * Presenta un menú interactivo con las siguientes opciones:
- * 1. Registrar Extensión: solicita al usuario un ID numérico y un nombre
- *    de oficina, y los inserta en el árbol binario de búsqueda.
- * 2. Ver Directorio: muestra todas las extensiones registradas ordenadas
- *    de menor a mayor, gracias al recorrido inorden del árbol.
- * 3. Buscar Extensión: permite verificar si un ID existe en el árbol,
- *    informando al usuario el resultado de la búsqueda.
- * 0. Salir: finaliza la ejecución del programa.
- *
- * Utiliza la clase Scanner para leer la entrada del usuario desde la consola
- * y la clase ArbolInventario para realizar todas las operaciones sobre el árbol.
- */
 public class Main {
     public static void main(String[] args) {
+        // Crea una instancia del árbol para guardar las extensiones
         ArbolInventario miArbol = new ArbolInventario();
-        Scanner sc = new Scanner(System.in);
-        int opcion = -1;
+        Scanner sc = new Scanner(System.in);  // Objeto para leer datos del usuario
+        int opcion = -1;  // Guardará la opción que elija el usuario
 
+        // Bucle que muestra el menú hasta que el usuario elija salir (opción 0)
         while (opcion != 0) {
             System.out.println("\n--- DIRECTORIO DE EXTENSIONES ---");
             System.out.println("1. Registrar Extensión");
-            System.out.println("2. Ver Directorio (Ordenado)");
-            System.out.println("3. Buscar Extensión");
+            System.out.println("2. Ver Directorio Inorden (menor a mayor)");
+            System.out.println("3. Ver Directorio Preorden (raíz primero)");
+            System.out.println("4. Ver Directorio Postorden (raíz al final)");
+            System.out.println("5. Buscar Extensión");
+            System.out.println("6. Eliminar Extensión");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion = sc.nextInt();
+            
+            // Manejo de errores: si el usuario ingresa algo que no es un número
+            try {
+                opcion = sc.nextInt();  // Lee la opción del usuario
+            } catch (Exception e) {
+                System.out.println("Entrada inválida. Debe ingresar un número.");
+                sc.next();  // Limpia el buffer del Scanner
+                continue;   // Vuelve a mostrar el menú
+            }
 
+            // Según la opción elegida, hace una cosa u otra
             switch (opcion) {
-                case 1:
+                case 1:  // Registrar nueva extensión
                     System.out.print("Ingrese número de extensión: ");
-                    int id = sc.nextInt();
-                    sc.nextLine(); // Limpiar el buffer
-                    System.out.print("Nombre de la oficina: ");
-                    String nombre = sc.nextLine();
-                    miArbol.insertar(id, nombre);
-                    System.out.println("Registrado con éxito.");
+                    try {
+                        int id = sc.nextInt();
+                        sc.nextLine();  // Limpia el buffer después de leer número
+                        System.out.print("Nombre de la oficina: ");
+                        String nombre = sc.nextLine();  // Lee el nombre
+                        miArbol.insertar(id, nombre);   // Inserta en el árbol
+                        System.out.println("Registrado con éxito.");
+                    } catch (Exception e) {
+                        System.out.println("ID debe ser un número válido.");
+                        sc.next();
+                    }
                     break;
+                    
                 case 2:
-                    System.out.println("\nLISTADO ACTUAL:");
-                    miArbol.mostrarInorden(miArbol.raiz);
+                    System.out.println("\nINORDEN (menor a mayor):");
+                    miArbol.mostrarInorden(miArbol.getRaiz());
                     break;
+
                 case 3:
-                    System.out.print("ID a buscar: ");
-                    int buscaId = sc.nextInt();
-                    System.out.println(miArbol.buscar(buscaId));
+                    System.out.println("\nPREORDEN (raíz primero):");
+                    miArbol.mostrarPreorden(miArbol.getRaiz());
                     break;
-                case 0:
+
+                case 4:
+                    System.out.println("\nPOSTORDEN (raíz al final):");
+                    miArbol.mostrarPostorden(miArbol.getRaiz());
+                    break;
+
+                case 5:  // Buscar una extensión por su ID
+                    System.out.print("ID a buscar: ");
+                    try {
+                        int buscaId = sc.nextInt();
+                        System.out.println(miArbol.buscar(buscaId));
+                    } catch (Exception e) {
+                        System.out.println("ID debe ser un número válido.");
+                        sc.next();
+                    }
+                    break;
+
+                case 6:  // Eliminar una extensión por su ID
+                    System.out.print("ID a eliminar: ");
+                    try {
+                        int eliminaId = sc.nextInt();
+                        System.out.println(miArbol.eliminar(eliminaId));
+                    } catch (Exception e) {
+                        System.out.println("ID debe ser un número válido.");
+                        sc.next();
+                    }
+                    break;
+                    
+                case 0:  // Salir del programa
                     System.out.println("Saliendo del sistema...");
                     break;
-                default:
+                    
+                default:  // Opción no válida
                     System.out.println("Opción no válida.");
             }
         }
-        sc.close();
+        sc.close();  // Cierra el Scanner cuando termina el programa
     }
 }
