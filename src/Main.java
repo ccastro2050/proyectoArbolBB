@@ -10,10 +10,11 @@ public class Main {
         // Bucle que muestra el menú hasta que el usuario elija salir (opción 0)
         while (opcion != 0) {
             System.out.println("\n--- DIRECTORIO DE EXTENSIONES ---");
+            mostrarArbolEjemplo();  // Dibuja el árbol de referencia
             System.out.println("1. Registrar Extensión");
-            System.out.println("2. Ver Directorio Inorden (menor a mayor)");
-            System.out.println("3. Ver Directorio Preorden (raíz primero)");
-            System.out.println("4. Ver Directorio Postorden (raíz al final)");
+            System.out.println("2. Ver Directorio Inorden   (ejemplo: Izquierda -> Raíz -> Derecha = 20, 30, 40, 50, 60, 70, 80)");
+            System.out.println("3. Ver Directorio Preorden  (ejemplo: Raíz -> Izquierda -> Derecha = 50, 30, 20, 40, 70, 60, 80)");
+            System.out.println("4. Ver Directorio Postorden (ejemplo: Izquierda -> Derecha -> Raíz = 20, 40, 30, 60, 80, 70, 50)");
             System.out.println("5. Buscar Extensión");
             System.out.println("6. Eliminar Extensión");
             System.out.println("0. Salir");
@@ -45,19 +46,19 @@ public class Main {
                     }
                     break;
                     
-                case 2:
-                    System.out.println("\nINORDEN (menor a mayor):");
-                    miArbol.mostrarInorden(miArbol.getRaiz());
+                case 2:  // Recorrido inorden (menor a mayor)
+                    mostrarEncabezadoRecorrido("INORDEN", "Izquierda -> Raíz -> Derecha");
+                    mostrarDirectorio(miArbol, 2);
                     break;
 
-                case 3:
-                    System.out.println("\nPREORDEN (raíz primero):");
-                    miArbol.mostrarPreorden(miArbol.getRaiz());
+                case 3:  // Recorrido preorden (raíz primero)
+                    mostrarEncabezadoRecorrido("PREORDEN", "Raíz -> Izquierda -> Derecha");
+                    mostrarDirectorio(miArbol, 3);
                     break;
 
-                case 4:
-                    System.out.println("\nPOSTORDEN (raíz al final):");
-                    miArbol.mostrarPostorden(miArbol.getRaiz());
+                case 4:  // Recorrido postorden (raíz al final)
+                    mostrarEncabezadoRecorrido("POSTORDEN", "Izquierda -> Derecha -> Raíz");
+                    mostrarDirectorio(miArbol, 4);
                     break;
 
                 case 5:  // Buscar una extensión por su ID
@@ -91,5 +92,50 @@ public class Main {
             }
         }
         sc.close();  // Cierra el Scanner cuando termina el programa
+    }
+
+    // Dibuja el árbol de ejemplo que sirve de referencia en el menú.
+    // Corresponde a insertar en este orden: 50, 30, 70, 20, 40, 60, 80
+    private static void mostrarArbolEjemplo() {
+        System.out.println();
+        System.out.println();
+        System.out.println("Árbol de ejemplo:");
+        System.out.println("            50");
+        System.out.println("          /    \\");
+        System.out.println("        30      70");
+        System.out.println("       /  \\    /  \\");
+        System.out.println("     20   40  60   80");
+        System.out.println();
+    }
+
+    // Imprime el nombre del recorrido y su orden de visita.
+    // El resultado de ejemplo ya se ve en el menú, por eso no se repite aquí.
+    private static void mostrarEncabezadoRecorrido(String nombre, String orden) {
+        System.out.println("\n" + nombre + " | " + orden);
+    }
+
+    // Lanza sobre el árbol del usuario el recorrido que eligió en el menú.
+    // Main no conoce la raíz ni la clase Oficina: solo le pide al árbol que
+    // se muestre. Todo el detalle de cómo se recorre queda dentro de
+    // ArbolInventario, que es el que sabe cómo está armado por dentro.
+    private static void mostrarDirectorio(ArbolInventario arbol, int recorrido) {
+        // Si todavía no hay extensiones, avisa en vez de no imprimir nada
+        if (arbol.estaVacio()) {
+            System.out.println("Su directorio: (vacío, aún no ha registrado extensiones)");
+            return;
+        }
+
+        System.out.println("Su directorio:");
+        switch (recorrido) {
+            case 2:
+                arbol.mostrarInorden();    // menor a mayor
+                break;
+            case 3:
+                arbol.mostrarPreorden();   // la raíz primero
+                break;
+            case 4:
+                arbol.mostrarPostorden();  // la raíz al final
+                break;
+        }
     }
 }
